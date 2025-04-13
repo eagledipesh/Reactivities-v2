@@ -1,3 +1,5 @@
+using Application.Acitivities.Queries;
+using Application.Core;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
@@ -13,15 +15,17 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 
 //builder.Services.AddCors();
 builder.Services.AddCors();
+builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblyContaining<GetActivityList.Handler>());
+builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 
 var app = builder.Build();
 
 app.UseCors(x =>
 {
-            x.AllowAnyOrigin()
-           .AllowAnyMethod()
-           .AllowAnyHeader()
-           .WithOrigins("http://localhost:3000", "https://localhost:3000");
+    x.AllowAnyOrigin()
+   .AllowAnyMethod()
+   .AllowAnyHeader()
+   .WithOrigins("http://localhost:3000", "https://localhost:3000");
 });
 
 app.MapControllers();
