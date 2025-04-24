@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Persistence;
 
-namespace Application.Acitivities.Queries;
+namespace Application.Activities.Queries;
 
 
 public class GetActivityList 
